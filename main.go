@@ -1,28 +1,71 @@
-/*
-Copyright © 2025 onyx-and-iris <code@onyxandiris.online>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-*/
+// Package cmd provides a command-line interface for generating .gitignore files.
 package main
 
-import "github.com/onyx-and-iris/ignr-cli/cmd"
+import (
+	"context"
+	"errors"
+	"fmt"
+	"log"
+	"runtime/debug"
+	"strings"
 
+	"github.com/google/go-github/v72/github"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
+)
+
+var version string // Version of the CLI, set during build time
+
+// rootCmd represents the base command when called without any subcommands.
+var rootCmd = &cobra.Command{
+	Use:   "ignr-cli",
+	Short: "A command-line interface for generating .gitignore files",
+	Long: `ignr-cli is a command-line interface for generating .gitignore files.
+It allows users to easily create and manage .gitignore files for various programming languages and frameworks.
+You may also list available templates and generate .gitignore files based on those templates.`,
+	SilenceUsage: true,
+	PersistentPreRun: func(cmd *cobra.Command, _ []string) {
+		var client *github.Client
+		if !viper.IsSet("token") || viper.GetString("token") == "" {
+			client = github.NewClient(nil)
+		} else {
+			client = github.NewClient(nil).WithAuthToken(viper.GetString("token"))
+		}
+		ctx := context.WithValue(context.Background(), clientKey, client)
+		cmd.SetContext(ctx)
+	},
+	RunE: func(cmd *cobra.Command, _ []string) error {
+		if cmd.Flags().Lookup("version").Changed {
+			if version == "" {
+				info, ok := debug.ReadBuildInfo()
+				if !ok {
+					return errors.New("unable to retrieve build information")
+				}
+				version = strings.Split(info.Main.Version, "-")[0]
+			}
+			fmt.Printf("ignr-cli version: %s\n", version)
+			return nil
+		}
+
+		return cmd.Help()
+	},
+}
+
+// init initialises the root command and its flags.
+func init() {
+	rootCmd.PersistentFlags().StringP("token", "t", "", "GitHub authentication token")
+	rootCmd.Flags().BoolP("version", "v", false, "Print the version of the CLI")
+
+	viper.SetEnvPrefix("GH")
+	viper.AutomaticEnv()
+	viper.BindPFlag("token", rootCmd.PersistentFlags().Lookup("token"))
+}
+
+// main is the entry point of the application.
+// It executes the root command and handles any errors.
 func main() {
-	cmd.Execute()
+	err := rootCmd.Execute()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
