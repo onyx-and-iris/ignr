@@ -42,7 +42,7 @@ Trigger the selection prompt.
 ignr-cli new
 ```
 
-The prompt filter can activated by pressing `/`:
+The prompt filter can be activated by pressing `/`:
 
 ![Prompt Filter](./img/promptfilter.png)
 
