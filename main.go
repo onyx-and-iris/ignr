@@ -54,11 +54,14 @@ You may also list available templates and generate .gitignore files based on tho
 // init initialises the root command and its flags.
 func init() {
 	rootCmd.PersistentFlags().StringP("token", "t", "", "GitHub authentication token")
+	rootCmd.PersistentFlags().IntP("height", "H", 20, "Height of the selection prompt")
+
 	rootCmd.Flags().BoolP("version", "v", false, "Print the version of the CLI")
 
-	viper.SetEnvPrefix("GH")
+	viper.SetEnvPrefix("IGNR")
 	viper.AutomaticEnv()
 	viper.BindPFlag("token", rootCmd.PersistentFlags().Lookup("token"))
+	viper.BindPFlag("height", rootCmd.PersistentFlags().Lookup("height"))
 }
 
 // main is the entry point of the application.

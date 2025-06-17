@@ -11,6 +11,7 @@ import (
 	"github.com/charmbracelet/lipgloss"
 	"github.com/google/go-github/v72/github"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 const gitignoreFileName = ".gitignore"
@@ -27,16 +28,14 @@ var newCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(newCmd)
-
-	newCmd.Flags().IntP("height", "H", 20, "Height of the selection prompt")
 }
 
 // runNewCommand is the handler for the 'new' command.
 // It retrieves the selected .gitignore template from GitHub and writes it to the .gitignore file.
 func runNewCommand(cmd *cobra.Command, _ []string) error {
-	height, err := cmd.Flags().GetInt("height")
-	if err != nil {
-		return fmt.Errorf("error getting height flag: %w", err)
+	height := viper.GetInt("height")
+	if height <= 0 {
+		return errors.New("height must be a positive integer")
 	}
 
 	client, ok := clientFromContext(cmd.Context())

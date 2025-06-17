@@ -14,22 +14,21 @@ Simple no-frills .gitignore generator backed by the Github API.
 go install github.com/onyx-and-iris/ignr-cli@latest
 ```
 
-## Authentication
+## Configuration
 
-You can run this tool without authenticating but requests will have a stricter rate limiting. 
+*flags*
 
-If you prefer to authenticate you can pass a token in the following ways:
+-   --token/-t: GitHub authentication token
+    -   note, this tool can be used **without** authenticating but rate limiting will be stricter.
+-   --height/-H: Height of the selection prompt (default 20)
 
-*Flag*
-
--   --token/-t: Github API Token
-
-*Environment Variable*
+*environment variables*
 
 ```bash
 #!/usr/bin/env bash
 
-export GH_TOKEN=<API Token>
+export IGNR_TOKEN=<API Token>
+export IGNR_HEIGHT=20
 ```
 
 ## Commands
@@ -37,11 +36,6 @@ export GH_TOKEN=<API Token>
 ### New
 
 Trigger the selection prompt.
-
--   flags:
-
-    *optional*
-    -   --height:  Height of the selection prompt, defaults to 20.
 
 ```console
 ignr-cli new
