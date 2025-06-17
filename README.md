@@ -37,10 +37,11 @@ export GH_TOKEN=<API Token>
 ### New
 
 Trigger the selection prompt.
-    -   flags:
 
-        *optional*
-        -   --height:  Height of the selection prompt.
+-   flags:
+
+    *optional*
+    -   --height:  Height of the selection prompt.
 
 ```console
 ignr-cli new
