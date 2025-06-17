@@ -31,7 +31,7 @@ You may also list available templates and generate .gitignore files based on tho
 		} else {
 			client = github.NewClient(nil).WithAuthToken(viper.GetString("token"))
 		}
-		ctx := context.WithValue(context.Background(), clientKey, client)
+		ctx := withClient(context.Background(), client)
 		cmd.SetContext(ctx)
 	},
 	RunE: func(cmd *cobra.Command, _ []string) error {

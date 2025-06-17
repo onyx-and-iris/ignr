@@ -8,9 +8,15 @@ import (
 
 type contextKey string
 
-const clientKey contextKey = "client"
+var clientKey = contextKey("client")
 
-func getClientFromContext(ctx context.Context) (*github.Client, bool) {
+// withClient returns a new context with the GitHub client set.
+func withClient(ctx context.Context, client *github.Client) context.Context {
+	return context.WithValue(ctx, clientKey, client)
+}
+
+// clientFromContext retrieves the GitHub client from the context.
+func clientFromContext(ctx context.Context) (*github.Client, bool) {
 	client, ok := ctx.Value(clientKey).(*github.Client)
 	return client, ok
 }
