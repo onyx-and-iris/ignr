@@ -41,7 +41,7 @@ Trigger the selection prompt.
 -   flags:
 
     *optional*
-    -   --height:  Height of the selection prompt.
+    -   --height:  Height of the selection prompt, defaults to 20.
 
 ```console
 ignr-cli new
