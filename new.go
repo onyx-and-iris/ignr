@@ -7,9 +7,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/charmbracelet/huh"
-	"github.com/charmbracelet/lipgloss"
 	"github.com/google/go-github/v72/github"
+	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -58,41 +57,39 @@ func runNewCommand(cmd *cobra.Command, _ []string) error {
 		return fmt.Errorf("error committing gitignore file: %w", err)
 	}
 
-	style := lipgloss.NewStyle().
-		Bold(true).
-		Foreground(lipgloss.Color("#7D56F4")) // nolint: misspell
-
-	fmt.Println(style.Render("Created"), content.GetName(), style.Render(".gitignore file ✓"))
-
 	return nil
 }
 
 // runPrompt is a helper function to run the selection prompt for .gitignore templates.
 func runPrompt(client *github.Client, height int) (*github.Gitignore, error) {
-	var selection string
-
 	templates, _, err := client.Gitignores.List(context.Background())
 	if err != nil {
 		return nil, fmt.Errorf("error retrieving gitignore template list: %w", err)
 	}
-	var options []huh.Option[string]
-	for _, template := range templates {
-		options = append(options, huh.NewOption(template, template))
+
+	selectTemmplates := &promptui.SelectTemplates{
+		Label:    `  {{ "\U0000007C" | faint }} {{ . | magenta | bold }}`,
+		Active:   `{{ "\U0000007C" | faint }} {{ "🌶" | red }}  {{ . | cyan | italic }}`,
+		Inactive: `{{ "\U0000007C" | faint }}    {{ . | faint }}`,
+		Selected: `{{ "Created" | green }} {{ . }} {{ ".gitignore file ✓" | green }}`,
 	}
 
-	selectionPrompt := huh.NewSelect[string]().
-		Title("Select a .gitignore template").
-		Options(options...).
-		Height(height).
-		Value(&selection)
+	prompt := promptui.Select{
+		Label:     "Select a .gitignore template",
+		Items:     templates,
+		Templates: selectTemmplates,
+		Size:      height,
+		Searcher:  filterFunc(templates),
+	}
 
-	if err := selectionPrompt.Run(); err != nil {
+	i, _, err := prompt.Run()
+	if err != nil {
 		return nil, fmt.Errorf("error running selection prompt: %w", err)
 	}
 
-	content, _, err := client.Gitignores.Get(context.Background(), selection)
+	content, _, err := client.Gitignores.Get(context.Background(), templates[i])
 	if err != nil {
-		return nil, fmt.Errorf("error retrieving gitignore template '%s': %w", selection, err)
+		return nil, fmt.Errorf("error retrieving gitignore template '%s': %w", templates[i], err)
 	}
 
 	return content, nil

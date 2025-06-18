@@ -21,6 +21,8 @@ go install github.com/onyx-and-iris/ignr-cli@latest
 -   --token/-t: GitHub authentication token
     -   note, this tool can be used **without** authenticating but rate limiting will be stricter.
 -   --height/-H: Height of the selection prompt (default 20)
+-   --filter/-f: Type of filter to apply to the list of templates (default startswith)
+    -   may be one of (startswith, contains)
 
 *environment variables*
 
@@ -29,6 +31,7 @@ go install github.com/onyx-and-iris/ignr-cli@latest
 
 export IGNR_TOKEN=<API Token>
 export IGNR_HEIGHT=20
+export IGNR_FILTER=startswith
 ```
 
 ## Commands
