@@ -46,7 +46,7 @@ Trigger the selection prompt.
 ignr new
 ```
 
-The prompt filter can be activated by pressing `/`:
+Search mode can be activated by pressing `/`:
 
 ![Prompt Filter](./img/promptfilter.png)
 
