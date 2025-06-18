@@ -1,7 +1,7 @@
 version: '3'
 
 vars:
-  PROGRAM: ignr-cli
+  PROGRAM: ignr
   SHELL: '{{if eq .OS "Windows_NT"}}powershell{{end}}'
   BIN_DIR: bin
   VERSION:
@@ -12,12 +12,12 @@ vars:
 
 tasks:
   default:
-    desc: Build the ignr-cli project
+    desc: Build the ignr project
     cmds:
       - task: build
 
   build:
-    desc: Build the ignr-cli project
+    desc: Build the ignr project
     deps: [vet]
     cmds:
       - task: build-windows
@@ -35,13 +35,13 @@ tasks:
       - go fmt ./...
 
   build-windows:
-    desc: Build the ignr-cli project for Windows
+    desc: Build the ignr project for Windows
     cmds:
       - GOOS=windows GOARCH=amd64 go build -o {{.WINDOWS}} -ldflags="-X main.version={{.VERSION}}"
     internal: true
 
   build-linux:
-    desc: Build the ignr-cli project for Linux
+    desc: Build the ignr project for Linux
     cmds:
       - GOOS=linux GOARCH=amd64 go build -o {{.LINUX}} -ldflags="-X main.version={{.VERSION}}"
     internal: true

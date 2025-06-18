@@ -2,7 +2,7 @@
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![macOS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0)
 
-# ignr-cli
+# ignr
 
 Simple no-frills .gitignore generator backed by the Github API.
 
@@ -11,7 +11,7 @@ Simple no-frills .gitignore generator backed by the Github API.
 ## Install
 
 ```console
-go install github.com/onyx-and-iris/ignr-cli@latest
+go install github.com/onyx-and-iris/ignr@latest
 ```
 
 ## Configuration
@@ -41,7 +41,7 @@ export IGNR_FILTER=startswith
 Trigger the selection prompt.
 
 ```console
-ignr-cli new
+ignr new
 ```
 
 The prompt filter can be activated by pressing `/`:
