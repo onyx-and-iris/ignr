@@ -50,4 +50,5 @@ The prompt filter can be activated by pressing `/`:
 
 ## Special Thanks
 
--   [Charm](https://github.com/charmbracelet) for their awesome CLI packages.
+-   [spf13] for the [cobra](https://github.com/spf13/cobra) and [viper](https://github.com/spf13/viper) packages.
+-   [Manifold](https://github.com/manifoldco) for the [promptui](https://github.com/manifoldco/promptui) package.
