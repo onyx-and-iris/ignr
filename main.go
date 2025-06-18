@@ -57,14 +57,17 @@ func init() {
 	rootCmd.PersistentFlags().IntP("height", "H", 10, "Height of the selection prompt")
 	rootCmd.PersistentFlags().
 		StringP("filter", "f", "startswith", "Type of filter to apply to the list of templates (e.g., 'startswith', 'contains')")
+	rootCmd.PersistentFlags().BoolP("start-search", "s", false, "Start the prompt in search mode")
 
 	rootCmd.Flags().BoolP("version", "v", false, "Print the version of the CLI")
 
+	viper.SetEnvKeyReplacer(strings.NewReplacer("-", "_"))
 	viper.SetEnvPrefix("IGNR")
 	viper.AutomaticEnv()
 	viper.BindPFlag("token", rootCmd.PersistentFlags().Lookup("token"))
 	viper.BindPFlag("height", rootCmd.PersistentFlags().Lookup("height"))
 	viper.BindPFlag("filter", rootCmd.PersistentFlags().Lookup("filter"))
+	viper.BindPFlag("start-search", rootCmd.PersistentFlags().Lookup("start-search"))
 }
 
 // main is the entry point of the application.

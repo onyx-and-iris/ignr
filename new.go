@@ -29,11 +29,21 @@ func init() {
 	rootCmd.AddCommand(newCmd)
 }
 
+type promptConfig struct {
+	Height      int
+	StartSearch bool
+	FilterType  string
+}
+
 // runNewCommand is the handler for the 'new' command.
 // It retrieves the selected .gitignore template from GitHub and writes it to the .gitignore file.
 func runNewCommand(cmd *cobra.Command, _ []string) error {
-	height := viper.GetInt("height")
-	if height <= 0 {
+	pc := promptConfig{
+		Height:      viper.GetInt("height"),
+		StartSearch: viper.GetBool("start-search"),
+		FilterType:  viper.GetString("filter"),
+	}
+	if pc.Height <= 0 {
 		return errors.New("height must be a positive integer")
 	}
 
@@ -42,7 +52,7 @@ func runNewCommand(cmd *cobra.Command, _ []string) error {
 		return errors.New("failed to get GitHub client from context")
 	}
 
-	content, err := runPrompt(client, height)
+	content, err := runPrompt(client, &pc)
 	if err != nil {
 		return fmt.Errorf("error running selection prompt: %w", err)
 	}
@@ -61,7 +71,7 @@ func runNewCommand(cmd *cobra.Command, _ []string) error {
 }
 
 // runPrompt is a helper function to run the selection prompt for .gitignore templates.
-func runPrompt(client *github.Client, height int) (*github.Gitignore, error) {
+func runPrompt(client *github.Client, pc *promptConfig) (*github.Gitignore, error) {
 	templates, _, err := client.Gitignores.List(context.Background())
 	if err != nil {
 		return nil, fmt.Errorf("error retrieving gitignore template list: %w", err)
@@ -75,11 +85,12 @@ func runPrompt(client *github.Client, height int) (*github.Gitignore, error) {
 	}
 
 	prompt := promptui.Select{
-		Label:     "Select a .gitignore template",
-		Items:     templates,
-		Templates: selectTemplates,
-		Size:      height,
-		Searcher:  filterFunc(templates),
+		Label:             "Select a .gitignore template",
+		Items:             templates,
+		Templates:         selectTemplates,
+		Size:              pc.Height,
+		Searcher:          filterFunc(templates, pc.FilterType),
+		StartInSearchMode: pc.StartSearch,
 	}
 
 	i, _, err := prompt.Run()

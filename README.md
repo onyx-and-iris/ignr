@@ -23,6 +23,7 @@ go install github.com/onyx-and-iris/ignr@latest
 -   --height/-H: Height of the selection prompt (default 10)
 -   --filter/-f: Type of filter to apply to the list of templates (default startswith)
     -   may be one of (startswith, contains)
+-   --start-search/-s: Start the prompt in search mode (default false)
 
 *environment variables*
 
@@ -32,6 +33,7 @@ go install github.com/onyx-and-iris/ignr@latest
 export IGNR_TOKEN=<API Token>
 export IGNR_HEIGHT=10
 export IGNR_FILTER=startswith
+export IGNR_START_SEARCH=false
 ```
 
 ## Commands
