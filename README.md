@@ -50,5 +50,5 @@ The prompt filter can be activated by pressing `/`:
 
 ## Special Thanks
 
--   [spf13] for the [cobra](https://github.com/spf13/cobra) and [viper](https://github.com/spf13/viper) packages.
+-   [spf13](https://github.com/spf13) for the [cobra](https://github.com/spf13/cobra) and [viper](https://github.com/spf13/viper) packages.
 -   [Manifold](https://github.com/manifoldco) for the [promptui](https://github.com/manifoldco/promptui) package.
