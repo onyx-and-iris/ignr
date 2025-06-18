@@ -67,7 +67,7 @@ func runPrompt(client *github.Client, height int) (*github.Gitignore, error) {
 		return nil, fmt.Errorf("error retrieving gitignore template list: %w", err)
 	}
 
-	selectTemmplates := &promptui.SelectTemplates{
+	selectTemplates := &promptui.SelectTemplates{
 		Label:    `  {{ "\U0000007C" | faint }} {{ . | magenta | bold }}`,
 		Active:   `{{ "\U0000007C" | faint }} {{ "🌶" | red }}  {{ . | cyan | italic }}`,
 		Inactive: `{{ "\U0000007C" | faint }}    {{ . | faint }}`,
@@ -77,7 +77,7 @@ func runPrompt(client *github.Client, height int) (*github.Gitignore, error) {
 	prompt := promptui.Select{
 		Label:     "Select a .gitignore template",
 		Items:     templates,
-		Templates: selectTemmplates,
+		Templates: selectTemplates,
 		Size:      height,
 		Searcher:  filterFunc(templates),
 	}
