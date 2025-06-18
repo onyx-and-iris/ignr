@@ -1,4 +1,4 @@
-module github.com/onyx-and-iris/ignr-cli
+module github.com/onyx-and-iris/ignr
 
 go 1.24.3
 
