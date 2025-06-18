@@ -18,9 +18,9 @@ var version string // Version of the CLI, set during build time
 
 // rootCmd represents the base command when called without any subcommands.
 var rootCmd = &cobra.Command{
-	Use:   "ignr-cli",
+	Use:   "ignr",
 	Short: "A command-line interface for generating .gitignore files",
-	Long: `ignr-cli is a command-line interface for generating .gitignore files.
+	Long: `ignr is a command-line interface for generating .gitignore files.
 It allows users to easily create and manage .gitignore files for various programming languages and frameworks.
 You may also list available templates and generate .gitignore files based on those templates.`,
 	SilenceUsage: true,
@@ -43,7 +43,7 @@ You may also list available templates and generate .gitignore files based on tho
 				}
 				version = strings.Split(info.Main.Version, "-")[0]
 			}
-			fmt.Printf("ignr-cli version: %s\n", version)
+			fmt.Printf("ignr version: %s\n", version)
 			return nil
 		}
 
