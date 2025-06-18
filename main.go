@@ -54,7 +54,7 @@ You may also list available templates and generate .gitignore files based on tho
 // init initialises the root command and its flags.
 func init() {
 	rootCmd.PersistentFlags().StringP("token", "t", "", "GitHub authentication token")
-	rootCmd.PersistentFlags().IntP("height", "H", 20, "Height of the selection prompt")
+	rootCmd.PersistentFlags().IntP("height", "H", 10, "Height of the selection prompt")
 	rootCmd.PersistentFlags().
 		StringP("filter", "f", "startswith", "Type of filter to apply to the list of templates (e.g., 'startswith', 'contains')")
 
