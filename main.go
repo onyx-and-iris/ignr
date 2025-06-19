@@ -3,12 +3,10 @@ package main
 
 import (
 	"context"
-	"errors"
-	"fmt"
-	"log"
-	"runtime/debug"
+	"os"
 	"strings"
 
+	"github.com/charmbracelet/fang"
 	"github.com/google/go-github/v72/github"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -31,24 +29,11 @@ You may also list available templates and generate .gitignore files based on tho
 		} else {
 			client = github.NewClient(nil).WithAuthToken(viper.GetString("token"))
 		}
-		ctx := withClient(context.Background(), client)
+		ctx := withClient(cmd.Context(), client)
 		cmd.SetContext(ctx)
 	},
-	RunE: func(cmd *cobra.Command, _ []string) error {
-		if cmd.Flags().Lookup("version").Changed {
-			if version == "" {
-				info, ok := debug.ReadBuildInfo()
-				if !ok {
-					return errors.New("unable to retrieve build information")
-				}
-				version = strings.Split(info.Main.Version, "-")[0]
-			}
-			fmt.Printf("ignr version: %s\n", version)
-			return nil
-		}
-
-		return cmd.Help()
-	},
+	//RunE: func(cmd *cobra.Command, _ []string) error {
+	//},
 }
 
 // init initialises the root command and its flags.
@@ -58,8 +43,6 @@ func init() {
 	rootCmd.PersistentFlags().
 		StringP("filter", "f", "startswith", "Type of filter to apply to the list of templates (e.g., 'startswith', 'contains')")
 	rootCmd.PersistentFlags().BoolP("start-search", "s", false, "Start the prompt in search mode")
-
-	rootCmd.Flags().BoolP("version", "v", false, "Print the version of the CLI")
 
 	viper.SetEnvKeyReplacer(strings.NewReplacer("-", "_"))
 	viper.SetEnvPrefix("IGNR")
@@ -73,8 +56,7 @@ func init() {
 // main is the entry point of the application.
 // It executes the root command and handles any errors.
 func main() {
-	err := rootCmd.Execute()
-	if err != nil {
-		log.Fatal(err)
+	if err := fang.Execute(context.Background(), rootCmd, fang.WithVersion(version)); err != nil {
+		os.Exit(1)
 	}
 }

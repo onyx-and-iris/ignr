@@ -95,7 +95,7 @@ func runPrompt(client *github.Client, pc *promptConfig) (*github.Gitignore, erro
 
 	i, _, err := prompt.Run()
 	if err != nil {
-		return nil, fmt.Errorf("error running selection prompt: %w", err)
+		return nil, err
 	}
 
 	content, _, err := client.Gitignores.Get(context.Background(), templates[i])
