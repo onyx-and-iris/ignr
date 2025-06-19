@@ -66,7 +66,19 @@ func main() {
 		version = strings.Split(info.Main.Version, "-")[0]
 	}
 
-	if err := fang.Execute(context.Background(), rootCmd, fang.WithVersion(version)); err != nil {
+	if err := fang.Execute(context.Background(), rootCmd, fang.WithVersion(versionFromBuild())); err != nil {
 		os.Exit(1)
 	}
+}
+
+func versionFromBuild() string {
+	if version == "" {
+		info, ok := debug.ReadBuildInfo()
+		if !ok {
+			return "(unable to read version)"
+		}
+		version = strings.Split(info.Main.Version, "-")[0]
+	}
+
+	return version
 }
