@@ -3,7 +3,6 @@ package main
 
 import (
 	"context"
-	"log"
 	"os"
 	"runtime/debug"
 	"strings"
@@ -58,14 +57,6 @@ func init() {
 // main is the entry point of the application.
 // It executes the root command and handles any errors.
 func main() {
-	if version == "" {
-		info, ok := debug.ReadBuildInfo()
-		if !ok {
-			log.Fatal("could not read build info")
-		}
-		version = strings.Split(info.Main.Version, "-")[0]
-	}
-
 	if err := fang.Execute(context.Background(), rootCmd, fang.WithVersion(versionFromBuild())); err != nil {
 		os.Exit(1)
 	}
