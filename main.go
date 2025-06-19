@@ -30,11 +30,8 @@ You may also list available templates and generate .gitignore files based on tho
 		} else {
 			client = github.NewClient(nil).WithAuthToken(viper.GetString("token"))
 		}
-		ctx := withClient(cmd.Context(), client)
-		cmd.SetContext(ctx)
+		cmd.SetContext(WithClient(cmd.Context(), client))
 	},
-	//RunE: func(cmd *cobra.Command, _ []string) error {
-	//},
 }
 
 // init initialises the root command and its flags.

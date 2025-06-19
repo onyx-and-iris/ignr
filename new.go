@@ -13,7 +13,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-const gitignoreFileName = ".gitignore"
+const gitignoreFileName string = ".gitignore"
 
 // newCmd represents the new command.
 var newCmd = &cobra.Command{
@@ -47,7 +47,7 @@ func runNewCommand(cmd *cobra.Command, _ []string) error {
 		return errors.New("height must be a positive integer")
 	}
 
-	client, ok := clientFromContext(cmd.Context())
+	client, ok := ClientFromContext(cmd.Context())
 	if !ok {
 		return errors.New("failed to get GitHub client from context")
 	}
