@@ -3,7 +3,7 @@ module github.com/onyx-and-iris/ignr
 go 1.24.3
 
 require (
-	github.com/charmbracelet/fang v0.2.0
+	github.com/charmbracelet/fang v0.3.0
 	github.com/google/go-github/v72 v72.0.0
 	github.com/manifoldco/promptui v0.9.0
 	github.com/spf13/cobra v1.9.1
@@ -15,7 +15,7 @@ require (
 	github.com/charmbracelet/lipgloss/v2 v2.0.0-beta1 // indirect
 	github.com/charmbracelet/x/ansi v0.9.3 // indirect
 	github.com/charmbracelet/x/cellbuf v0.0.13 // indirect
-	github.com/charmbracelet/x/exp/charmtone v0.0.0-20250629123816-066ae234febc // indirect
+	github.com/charmbracelet/x/exp/charmtone v0.0.0-20250702191427-5bdfc8f2e4ff // indirect
 	github.com/charmbracelet/x/term v0.2.1 // indirect
 	github.com/chzyer/readline v1.5.1 // indirect
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
