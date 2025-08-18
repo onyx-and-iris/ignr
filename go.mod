@@ -11,12 +11,12 @@ require (
 )
 
 require (
-	github.com/charmbracelet/colorprofile v0.3.1 // indirect
+	github.com/charmbracelet/colorprofile v0.3.2 // indirect
 	github.com/charmbracelet/lipgloss/v2 v2.0.0-beta1 // indirect
 	github.com/charmbracelet/x/ansi v0.10.1 // indirect
 	github.com/charmbracelet/x/cellbuf v0.0.13 // indirect
-	github.com/charmbracelet/x/exp/charmtone v0.0.0-20250806222409-83e3a29d542f // indirect
-	github.com/charmbracelet/x/exp/color v0.0.0-20250806222409-83e3a29d542f // indirect
+	github.com/charmbracelet/x/exp/charmtone v0.0.0-20250814162307-57b675fecd71 // indirect
+	github.com/charmbracelet/x/exp/color v0.0.0-20250814162307-57b675fecd71 // indirect
 	github.com/charmbracelet/x/term v0.2.1 // indirect
 	github.com/chzyer/readline v1.5.1 // indirect
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
