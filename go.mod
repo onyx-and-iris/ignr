@@ -15,8 +15,8 @@ require (
 	github.com/charmbracelet/lipgloss/v2 v2.0.0-beta1 // indirect
 	github.com/charmbracelet/x/ansi v0.10.2 // indirect
 	github.com/charmbracelet/x/cellbuf v0.0.13 // indirect
-	github.com/charmbracelet/x/exp/charmtone v0.0.0-20251002185555-b6045cb4669e // indirect
-	github.com/charmbracelet/x/exp/color v0.0.0-20251002185555-b6045cb4669e // indirect
+	github.com/charmbracelet/x/exp/charmtone v0.0.0-20251008171431-5d3777519489 // indirect
+	github.com/charmbracelet/x/exp/color v0.0.0-20251006100439-2151805163c8 // indirect
 	github.com/charmbracelet/x/term v0.2.1 // indirect
 	github.com/chzyer/readline v1.5.1 // indirect
 	github.com/clipperhouse/uax29/v2 v2.2.0 // indirect
@@ -40,7 +40,7 @@ require (
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
-	golang.org/x/sys v0.36.0 // indirect
-	golang.org/x/text v0.29.0 // indirect
+	golang.org/x/sys v0.37.0 // indirect
+	golang.org/x/text v0.30.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
 )
