@@ -10,8 +10,8 @@ github.com/charmbracelet/x/ansi v0.10.2 h1:ith2ArZS0CJG30cIUfID1LXN7ZFXRCww6RUvA
 github.com/charmbracelet/x/ansi v0.10.2/go.mod h1:HbLdJjQH4UH4AqA2HpRWuWNluRE6zxJH/yteYEYCFa8=
 github.com/charmbracelet/x/cellbuf v0.0.13 h1:/KBBKHuVRbq1lYx5BzEHBAFBP8VcQzJejZ/IA3iR28k=
 github.com/charmbracelet/x/cellbuf v0.0.13/go.mod h1:xe0nKWGd3eJgtqZRaN9RjMtK7xUYchjzPr7q6kcvCCs=
-github.com/charmbracelet/x/exp/charmtone v0.0.0-20251008171431-5d3777519489 h1:tHgWs4QrKOXabS72boXwc3PZkzBKiTGhA/KMQ7LurYo=
-github.com/charmbracelet/x/exp/charmtone v0.0.0-20251008171431-5d3777519489/go.mod h1:URW1lCfdUqp9aey3HTV+jRvaGLuaj2d0jVk2NTRpklY=
+github.com/charmbracelet/x/exp/charmtone v0.0.0-20251016201629-54e687c87a08 h1:nyUicUfbB4snb1OfMb4HP0AXQkIjynIXZ66Yhi4BKN4=
+github.com/charmbracelet/x/exp/charmtone v0.0.0-20251016201629-54e687c87a08/go.mod h1:URW1lCfdUqp9aey3HTV+jRvaGLuaj2d0jVk2NTRpklY=
 github.com/charmbracelet/x/exp/color v0.0.0-20251006100439-2151805163c8 h1:X5wanVZ1RmBfIQFuIp4trGdL1F6eGYL7ekJaK47e6V4=
 github.com/charmbracelet/x/exp/color v0.0.0-20251006100439-2151805163c8/go.mod h1:Fq7bG2T217JwA21s/gGh/uCMT5++zGDCt8l0MvbRxcA=
 github.com/charmbracelet/x/exp/golden v0.0.0-20240806155701-69247e0abc2a h1:G99klV19u0QnhiizODirwVksQB91TJKV/UaTnACcG30=
