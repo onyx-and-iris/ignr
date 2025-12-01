@@ -13,15 +13,14 @@ require (
 require (
 	charm.land/lipgloss/v2 v2.0.0-beta.3.0.20251106193318-19329a3e8410 // indirect
 	github.com/charmbracelet/colorprofile v0.3.3 // indirect
-	github.com/charmbracelet/ultraviolet v0.0.0-20251120225753-26363bddd922 // indirect
-	github.com/charmbracelet/x/ansi v0.11.1 // indirect
-	github.com/charmbracelet/x/exp/charmtone v0.0.0-20251118172736-77d017256798 // indirect
-	github.com/charmbracelet/x/exp/color v0.0.0-20251006100439-2151805163c8 // indirect
+	github.com/charmbracelet/ultraviolet v0.0.0-20251124142205-05635edc50ab // indirect
+	github.com/charmbracelet/x/ansi v0.11.2 // indirect
+	github.com/charmbracelet/x/exp/charmtone v0.0.0-20251126160633-0b68cdcd21da // indirect
 	github.com/charmbracelet/x/term v0.2.2 // indirect
 	github.com/charmbracelet/x/termios v0.1.1 // indirect
 	github.com/charmbracelet/x/windows v0.2.2 // indirect
 	github.com/chzyer/readline v1.5.1 // indirect
-	github.com/clipperhouse/displaywidth v0.6.0 // indirect
+	github.com/clipperhouse/displaywidth v0.6.1 // indirect
 	github.com/clipperhouse/stringish v0.1.1 // indirect
 	github.com/clipperhouse/uax29/v2 v2.3.0 // indirect
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
