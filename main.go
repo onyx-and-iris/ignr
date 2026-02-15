@@ -3,6 +3,7 @@ package main
 
 import (
 	"context"
+	"log"
 	"os"
 	"runtime/debug"
 	"strings"
@@ -45,16 +46,31 @@ func init() {
 	viper.SetEnvKeyReplacer(strings.NewReplacer("-", "_"))
 	viper.SetEnvPrefix("IGNR")
 	viper.AutomaticEnv()
-	viper.BindPFlag("token", rootCmd.PersistentFlags().Lookup("token"))
-	viper.BindPFlag("height", rootCmd.PersistentFlags().Lookup("height"))
-	viper.BindPFlag("filter", rootCmd.PersistentFlags().Lookup("filter"))
-	viper.BindPFlag("start-search", rootCmd.PersistentFlags().Lookup("start-search"))
+	if err := viper.BindPFlag("token", rootCmd.PersistentFlags().Lookup("token")); err != nil {
+		log.Fatal(err)
+	}
+	if err := viper.BindPFlag("height", rootCmd.PersistentFlags().Lookup("height")); err != nil {
+		log.Fatal(err)
+	}
+	if err := viper.BindPFlag("filter", rootCmd.PersistentFlags().Lookup("filter")); err != nil {
+		log.Fatal(err)
+	}
+	if err := viper.BindPFlag(
+		"start-search",
+		rootCmd.PersistentFlags().Lookup("start-search"),
+	); err != nil {
+		log.Fatal(err)
+	}
 }
 
 // main is the entry point of the application.
 // It executes the root command and handles any errors.
 func main() {
-	if err := fang.Execute(context.Background(), rootCmd, fang.WithVersion(versionFromBuild())); err != nil {
+	if err := fang.Execute(
+		context.Background(),
+		rootCmd,
+		fang.WithVersion(versionFromBuild()),
+	); err != nil {
 		os.Exit(1)
 	}
 }
