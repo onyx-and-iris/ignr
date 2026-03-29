@@ -25,6 +25,11 @@ It allows users to easily create and manage .gitignore files for various program
 You may also list available templates and generate .gitignore files based on those templates.`,
 	SilenceUsage: true,
 	PersistentPreRun: func(cmd *cobra.Command, _ []string) {
+		if strings.HasPrefix(cmd.CommandPath(), "exclude completion") ||
+			strings.HasPrefix(cmd.CommandPath(), "exclude help") {
+			return
+		}
+
 		var client *github.Client
 		if !viper.IsSet("token") || viper.GetString("token") == "" {
 			client = github.NewClient(nil)
