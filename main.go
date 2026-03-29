@@ -25,8 +25,8 @@ It allows users to easily create and manage .gitignore files for various program
 You may also list available templates and generate .gitignore files based on those templates.`,
 	SilenceUsage: true,
 	PersistentPreRun: func(cmd *cobra.Command, _ []string) {
-		if strings.HasPrefix(cmd.CommandPath(), "exclude completion") ||
-			strings.HasPrefix(cmd.CommandPath(), "exclude help") {
+		if strings.HasPrefix(cmd.CommandPath(), "ignr completion") ||
+			strings.HasPrefix(cmd.CommandPath(), "ignr help") {
 			return
 		}
 
