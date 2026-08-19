@@ -16,6 +16,18 @@ import (
 
 var version string // Version of the CLI, set during build time
 
+func versionFromBuild() string {
+	if version != "" {
+		return version
+	}
+
+	info, ok := debug.ReadBuildInfo()
+	if !ok {
+		return "(unable to read version)"
+	}
+	return strings.Split(info.Main.Version, "-")[0]
+}
+
 // rootCmd represents the base command when called without any subcommands.
 var rootCmd = &cobra.Command{
 	Use:   "ignr",
@@ -78,16 +90,4 @@ func main() {
 	); err != nil {
 		os.Exit(1)
 	}
-}
-
-func versionFromBuild() string {
-	if version != "" {
-		return version
-	}
-
-	info, ok := debug.ReadBuildInfo()
-	if !ok {
-		return "(unable to read version)"
-	}
-	return strings.Split(info.Main.Version, "-")[0]
 }
